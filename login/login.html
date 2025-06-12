@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Masuk</title>
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="icon" href="../image/logo.png" type="image/gif" />
+</head>
+<body>
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 login-section-wrapper">
+          <div class="brand-wrapper">
+            <img src="assets/images/logo.png" alt="logo" class="logo">
+          </div>
+          <div class="login-wrapper my-auto">
+            <h1 class="login-title">Masuk</h1>
+            <form action="#!">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="email@example.com">
+                <span id="emailError" style="color:red; display:none; font-size:13px; margin-top:4px;"><b>!</b> Email tidak valid</span>
+              </div>
+              <div class="form-group mb-4">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="masukkan password anda">
+                <span id="passwordError" style="color:red; display:none; font-size:13px; margin-top:4px;"><b>!</b> Password tidak boleh kosong</span>
+              </div>
+             <input name="login" id="login" class="btn btn-block login-btn" type="submit" value="Login">
+            </form>
+            <a href="lupa-password.html" class="forgot-password-link">Lupa password?</a>
+            <p class="login-wrapper-footer-text">Belum punya akun? <a href="signup.html" class="text-reset">Daftar di sini</a></p>
+          </div>
+        </div>
+        <div class="col-sm-6 px-0 d-none d-sm-block">
+          <img src="assets/images/login.jpeg" alt="login image" class="login-img">
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ <script>
+const emailInput = document.getElementById('email');
+const emailError = document.getElementById('emailError');
+const passwordInput = document.getElementById('password');
+const passwordError = document.getElementById('passwordError');
+const loginBtn = document.getElementById('login');
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validatePassword(password) {
+  return password.trim() !== '';
+}
+
+function validateForm() {
+  const isEmailValid = validateEmail(emailInput.value);
+  const isPasswordValid = validatePassword(passwordInput.value);
+
+  emailError.style.display = isEmailValid ? 'none' : 'inline';
+  passwordError.style.display = isPasswordValid ? 'none' : 'inline';
+  loginBtn.disabled = !(isEmailValid && isPasswordValid);
+}
+
+emailInput.addEventListener('input', validateForm);
+passwordInput.addEventListener('input', validateForm);
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Mencegah form submit default
+    validateForm();
+    if (!loginBtn.disabled) {
+        // Simulasi login berhasil
+        localStorage.setItem('isLoggedIn', 'true'); // Simpan status login
+        alert('Login berhasil! Mengarahkan Anda ke halaman beranda...');
+        window.location.href="../index.html"; // Arahkan ke landing page
+    } else {
+        alert('Mohon isi email dan password dengan benar!');
+    }
+});
+</script>
+
+</body>
+</html>
