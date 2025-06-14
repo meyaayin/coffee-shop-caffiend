@@ -990,7 +990,12 @@ textarea#comment.massage-bt::placeholder {
     align-items: center;
     display: block;
     margin-top: 20px;
-    border: 1px solid #4b3935;}
+    border: 1px solid #4b3935;
+    resize: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
 
 textarea#comment.update_mail::placeholder {
     color: #383838;
